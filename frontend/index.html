@@ -1,1 +1,59 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <title>Advisor Monte Carlo</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1"/>
+  <link rel="stylesheet" href="styles.css"/>
+  <!-- Plotly CDN -->
+  <script src="https://cdn.plot.ly/plotly-2.32.0.min.js"></script>
+</head>
+<body>
+  <header>
+    <h1>Advisor Monte Carlo</h1>
+    <p class="sub">Upload a Portfolio Overview (.docx) or paste JSON → Simulate → Print</p>
+  </header>
+
+  <section class="panel">
+    <h2>1) Upload Portfolio Overview (.docx)</h2>
+    <input type="file" id="docxFile" accept=".docx"/>
+    <button id="parseBtn">Parse Document</button>
+    <div id="parseStatus"></div>
+  </section>
+
+  <section class="panel">
+    <h2>2) Or Paste Portfolio JSON</h2>
+    <textarea id="jsonInput" rows="10" placeholder='{"client":{...},"accounts":[...], ...}'></textarea>
+    <div class="row">
+      <button id="useJsonBtn">Use JSON</button>
+      <button id="clearJsonBtn" class="ghost">Clear</button>
+    </div>
+  </section>
+
+  <section class="panel">
+    <h2>3) Configure & Run Simulation</h2>
+    <div class="row">
+      <label>Paths: <input type="number" id="nPaths" value="10000" min="1000" step="1000"/></label>
+      <label>Seed: <input type="number" id="seed" value="42"/></label>
+      <button id="simulateBtn">Run Monte Carlo</button>
+    </div>
+    <pre id="simSummary"></pre>
+  </section>
+
+  <section class="panel">
+    <h2>Results</h2>
+    <div id="probGoals"></div>
+    <div id="fanChart" class="chart"></div>
+    <div id="histChart" class="chart"></div>
+    <div class="row right">
+      <button onclick="window.print()">Print / Save PDF</button>
+    </div>
+  </section>
+
+  <footer>
+    <small>Illustrative only. Not investment advice. © Your Firm</small>
+  </footer>
+  <script src="app.js"></script>
+</body>
+</html>
 
